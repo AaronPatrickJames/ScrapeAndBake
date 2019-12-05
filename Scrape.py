@@ -37,17 +37,18 @@ def getRequest(URL):
         page = requests.get(URL)
         return page
     except Exception as e:
-        print("There Was An Error: ")
+        print("There Was An Error:")
         try:
             #if page load failure, Return status code (Status Codes online, 200 is good)
             pageCode = page.status_code
             print("Page Status Code: " + str(pageCode))
             print("Error Desciption: " + str(e))
-            raise SystemExit
+            print("Please Try a Different URL")
+            main()
         except:
             #if invalid URL Print - invalid - System.exit
-            print("Invalid URL")
-            raise SystemExit
+            print("Invalid URL: Please include the full URL")
+            main()
 
 
 #Get content of page
@@ -58,7 +59,8 @@ def getPageContent(rawPage):
     except Exception as e:
         print("The page contents were unavailable")
         print(str(e))
-        raise SystemExit
+        print("No accessable content of page, try again")
+        main()
 
 
 #Makes Code HTML Human Readable
